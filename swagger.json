@@ -1,25 +1,143 @@
+
 {
-    "name": "cse341",
-    "version": "1.0.0",
-    "main": "server.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "swagger": "node ./swagger.js"
+    "swagger": "2.0",
+    "info": {
+      "title": "Restaurant API",
+      "description": "API for managing restaurants",
+      "version": "1.0.0"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "dotenv": "^16.3.1",
-      "express": "^4.18.2",
-      "mongo": "^0.1.0",
-      "mongodb": "^6.2.0",
-      "mongoose": "^7.6.4",
-      "swagger-ui-express": "^5.0.0"
+    "host": "localhost:3002",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/restaurants": {
+        "get": {
+          "description": "Get a list of all restaurants",
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "A list of restaurants",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Restaurant"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Create a new restaurant",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Restaurant object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Restaurant"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Restaurant created"
+            }
+          }
+        }
+      },
+      "/restaurants/{id}": {
+        "get": {
+          "description": "Get a restaurant by ID",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detailed information about the restaurant",
+              "schema": {
+                "$ref": "#/definitions/Restaurant"
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Update an existing restaurant",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Restaurant object that needs to be updated",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Restaurant"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Restaurant updated"
+            }
+          }
+        },
+        "delete": {
+          "description": "Delete a restaurant",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Restaurant deleted"
+            }
+          }
+        }
+      }
     },
-    "devDependencies": {
-      "nodemon": "^3.0.1",
-      "swagger-autogen": "^2.23.7"
-    },
-    "description": ""
-  }
+    "definitions": {
+      "Restaurant": {
+        "type": "object",
+        "required": ["name", "address", "cuisine"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "zipcode": {
+                "type": "string"
+              }
+            }
+          },
+          "cuisine": {
+            "type": "string"
+          }
+        }
+      }
+    }
+}
