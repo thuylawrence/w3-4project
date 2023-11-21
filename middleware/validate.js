@@ -1,10 +1,13 @@
 
 const validator = require('../validator');
 
-const saveNeighborhood = (req, res, next) => {
+const saveCustomer = (req, res, next) => {
     const validationRule = {
+        username: 'required|string',
         name: 'required|string',
-        'geometry.type': 'required|string',
+        address: 'required|string',
+        birthdate: 'required|date',  
+        email: 'required|email', 
     };
 
     validator(req.body, validationRule, {}, (err, status) => {
@@ -21,5 +24,5 @@ const saveNeighborhood = (req, res, next) => {
 };
 
 module.exports = {
-    saveNeighborhood
+    saveCustomer
 };
