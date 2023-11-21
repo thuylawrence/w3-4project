@@ -10,7 +10,7 @@ GET http://localhost:3002/neighborhoods/55cb9c666c522cafdb053a2c HTTP/1.1
 POST http://localhost:3002/neighborhoods HTTP/1.1 content-type: application/json
   
   {
-  "name": "Borough Park",
+  "name": "National Park",
   "geometry": {
     
   }
