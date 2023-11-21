@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 router.use('/', require('./swagger'));
 
-router.use('/restaurants', require('./restaurants'));
+router.use('/neighborhoods', require('./neighborhoods'));
 
 module.exports = router;
 
