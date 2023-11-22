@@ -2,54 +2,54 @@
 {
     "swagger": "2.0",
     "info": {
-      "title": "Restaurant API",
-      "description": "API for managing restaurants",
+      "title": "Customers API",
+      "description": "API for managing customers",
       "version": "1.0.0"
     },
     "host": "localhost:3002",
     "basePath": "/",
     "schemes": ["http"],
     "paths": {
-      "/restaurants": {
+      "/customers": {
         "get": {
-          "description": "Get a list of all restaurants",
+          "description": "Get a list of all customers",
           "produces": ["application/json"],
           "responses": {
             "200": {
-              "description": "A list of restaurants",
+              "description": "A list of customers",
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/Restaurant"
+                  "$ref": "#/definitions/Customer"
                 }
               }
             }
           }
         },
         "post": {
-          "description": "Create a new restaurant",
+          "description": "Create a new customer",
           "consumes": ["application/json"],
           "parameters": [
             {
               "in": "body",
               "name": "body",
-              "description": "Restaurant object that needs to be added",
+              "description": "customer object that needs to be added",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/Restaurant"
+                "$ref": "#/definitions/customer"
               }
             }
           ],
           "responses": {
             "201": {
-              "description": "Restaurant created"
+              "description": "customer created"
             }
           }
         }
       },
-      "/restaurants/{id}": {
+      "/customers/{id}": {
         "get": {
-          "description": "Get a restaurant by ID",
+          "description": "Get a customer by ID",
           "produces": ["application/json"],
           "parameters": [
             {
@@ -61,15 +61,15 @@
           ],
           "responses": {
             "200": {
-              "description": "Detailed information about the restaurant",
+              "description": "Detailed information about the customer",
               "schema": {
-                "$ref": "#/definitions/Restaurant"
+                "$ref": "#/definitions/customer"
               }
             }
           }
         },
         "put": {
-          "description": "Update an existing restaurant",
+          "description": "Update an existing customer",
           "consumes": ["application/json"],
           "parameters": [
             {
@@ -81,21 +81,21 @@
             {
               "in": "body",
               "name": "body",
-              "description": "Restaurant object that needs to be updated",
+              "description": "customer object that needs to be updated",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/Restaurant"
+                "$ref": "#/definitions/customer"
               }
             }
           ],
           "responses": {
             "200": {
-              "description": "Restaurant updated"
+              "description": "customer updated"
             }
           }
         },
         "delete": {
-          "description": "Delete a restaurant",
+          "description": "Delete a customer",
           "parameters": [
             {
               "name": "id",
@@ -106,14 +106,14 @@
           ],
           "responses": {
             "200": {
-              "description": "Restaurant deleted"
+              "description": "customer deleted"
             }
           }
         }
       }
     },
     "definitions": {
-      "Restaurant": {
+      "customer": {
         "type": "object",
         "required": ["name", "address", "cuisine"],
         "properties": {
