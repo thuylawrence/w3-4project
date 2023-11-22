@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-// Corrected the variable name to match the import
-const customersController = require('../controllers/customers');
+const customersControllers = require('../controllers/customers');
 const validation = require('../middleware/validate');
 
-router.get('/', customersController.getAll);
+router.get('/', customersControllers.getAll);
 
-router.get('/:id', customersController.getSingle);
+router.get('/:id', customersControllers.getSingle);
 
-// Fixed the reference to customerController in the post and put routes
-router.post('/', validation.saveCustomer, customersController.createCustomer);
 
-router.put('/:id', validation.saveCustomer, customersController.updateCustomer);
+router.post('/', validation.saveCustomer, customersControllers.createCustomer);
 
-router.delete('/:id', customersController.deleteCustomer);
+router.put('/:id', validation.saveCustomer, customersControllers.updateCustomer);
+
+router.delete('/:id', customersControllers.deleteCustomer);
 
 module.exports = router;
