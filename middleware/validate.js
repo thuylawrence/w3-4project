@@ -23,6 +23,26 @@ const saveCustomer = (req, res, next) => {
     });
 };
 
+const saveAccount = (req, res, next) => {
+    const accountValidationRule = {
+        
+        account_id: 'required|numeric', 
+        limit: 'required|numeric' 
+    };
+
+    validator(req.body, accountValidationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
 module.exports = {
-    saveCustomer
+    saveCustomer,
+    saveAccount
 };

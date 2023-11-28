@@ -32,3 +32,32 @@ content-type: application/json
 
 ### Delete customer
 DELETE http://localhost:3002/customers/5ca4bbcea2dd94ee58162a87 HTTP/1.1
+
+### Get all accounts
+
+GET http://localhost:3002/accounts HTTP/1.1
+
+### Get account by id
+
+GET http://localhost:3002/accounts/5ca4bbc7a2dd94ee58162395 HTTP/1.1
+
+### Update account
+PUT http://localhost:3002/accounts/5ca4bbc7a2dd94ee58162395 HTTP/1.1
+content-type: application/json
+
+{
+  "account_id": "910579",
+  "limit": "5000"
+}
+
+### Create account
+POST http://localhost:3002/accounts HTTP/1.1
+content-type: application/json
+
+{
+  "account_id": "910580",
+  "limit": "3000"
+}
+
+### Delete account
+DELETE http://localhost:3002/accounts/5ca4bbc7a2dd94ee58162395 HTTP/1.1
