@@ -9,7 +9,7 @@ function isAuthenticated(req, res, next) {
     }
     res.redirect('/login');
 }
-router.use('/api-docs', swaggerUi.serve);
+router.use('/api-docs', isAuthenticated, swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 
