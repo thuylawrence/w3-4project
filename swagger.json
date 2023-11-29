@@ -241,7 +241,7 @@
           "required": ["account_id", "limit"],
           "properties": {
               "account_id": {
-                  "type": "string"
+                  "type": "number"
               },
               "limit": {
                   "type": "number"

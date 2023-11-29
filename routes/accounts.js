@@ -4,15 +4,17 @@ const router = express.Router();
 const accountsControllers = require('../controllers/accounts');
 const validation = require('../middleware/validate');
 
+const isAuthenticated = require("../middleware/authenticate")
+
 router.get('/', accountsControllers.getAll);
 
 router.get('/:id', accountsControllers.getSingle);
 
 
-router.post('/', validation.saveAccount, accountsControllers.createAccount);
+router.post('/', isAuthenticated, validation.saveAccount, accountsControllers.createAccount);
 
-router.put('/:id', validation.saveAccount, accountsControllers.updateAccount);
+router.put('/:id', isAuthenticated, validation.saveAccount, accountsControllers.updateAccount);
 
-router.delete('/:id', accountsControllers.deleteAccount);
+router.delete('/:id', isAuthenticated, accountsControllers.deleteAccount);
 
 module.exports = router;

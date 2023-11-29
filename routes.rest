@@ -7,7 +7,7 @@ GET http://localhost:3002/customers HTTP/1.1
 GET http://localhost:3002/customers/5ca4bbcea2dd94ee58162a87 HTTP/1.1
 
 ### Update customer
-PUT  http://localhost:3002/customers/5ca4bbcea2dd94ee58162a87 HTTP/1.1 
+PUT  http://localhost:3002/customers/5ca4bbcea2dd94ee58162a76 HTTP/1.1 
 content-type: application/json
 
 {

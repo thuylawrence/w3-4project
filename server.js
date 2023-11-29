@@ -21,10 +21,8 @@ app
     resave: false,
     saveUninitialized: true,
   }))
-  
-  
   .use(passport.initialize())
-  .use(passport.session())
+  .use(passport.session());
   
 app.use(bodyParser.urlencoded({
   extended: true
@@ -53,6 +51,9 @@ passport.use(new GithubStrategy({
   callbackURL: process.env.CALLBACK_URL
 },
 function(accessToken, refreshToken, profile, done){
+  // if (error) {
+  //   return done(error);
+  // }
   return done(null, profile);
 }));
 
@@ -63,13 +64,13 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-app.get('/', (req, res) => { res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.displayName}` : "Logged Out")});
+app.get('/', (req, res) => { res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.username}` : "Logged Out")});
 
 app.get('/github/callback', passport.authenticate('github', {
   failureRedirect: '/api-docs', 
   session: false }),
   (req, res) => {
-    req.session.user = req_user;
+    req.session.user = req.user;
     res.redirect('/');
   });
 
